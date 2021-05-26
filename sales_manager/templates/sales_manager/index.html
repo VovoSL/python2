@@ -17,7 +17,7 @@
         {{ book.text }} <br>
         <i>{{ book.author }}</i> <br>
         {{ book.date_publish|date:"m-Y" }} <br>
-        <a href="{% url 'book-like'  book_id=book.id  %}"
+        <a href="{% url 'book-like'  book_id=book.id  %}">
             <i>likes {{ book.count_likes }} </i></a> <br><br>
     {% endfor %}
 </body>
