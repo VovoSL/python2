@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'Eurupe/Minsk'
+TIME_ZONE = 'Europe/Minsk'
 
 DATE_FORMAT = "Y-m-D"
 
