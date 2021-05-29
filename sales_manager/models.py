@@ -20,11 +20,12 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-class Coment(models.Model):
+class Comment(models.Model):
     text = models.TextField()
-    date = models.DateTimeField(auto_now_old=True)
-    user = models.ForeignKey(User,
-        on_delete=model.SET_DEFAULT,
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_DEFAULT,
         default=3, db_index=True,
         related_name="comments"
     )

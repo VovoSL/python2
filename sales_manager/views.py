@@ -1,30 +1,20 @@
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
-
-from sales_manager.models import Book
+from sales_manager.models import Book, Comment
 from django.views import View
-from django.db.models import Count, Prefetch
+from sales_manager.utils import get_book_with_comment
 
 
 def main_page(request):
-    comment_query = Comment.objects.all().select_related("user"). \
-        annotate(count_likes=Count("like"))
-    comment_prefetch = Prefetch("comments", queryset=comment_query)
-    query_set = Book.objects.all().select_related('author'). \
-        prefetch_related(comment_prefetch).annotate(count_likes=Count("likes"))
+    query_set = get_book_with_comment()
     context = {"books": query_set}
     return render(request, "sales_manager/index.html", context=context)
 
 def book_detail(request, book_id):
-    comment_query = Comment.objects.all().select_related("user"). \
-        annotate(count_likes=Count("like"))
-    comment_prefetch = Prefetch("comments", queryset=comment_query)
-    query_set = Book.objects.all().select_related('author'). \
-        prefetch_related(comment_prefetch).annotate(count_likes=Count("likes"))
-    book = Book.objects.get(id=book_id)
+    query_set = get_book_with_comment()
+    book = query_set.objects.get(id=book_id)
     context = {"book": book}
     return render(request, "sales_manager/book_detail.html", context=context)
 
