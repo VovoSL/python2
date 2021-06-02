@@ -12,23 +12,26 @@ def main_page(request):
     context = {"books": query_set}
     return render(request, "sales_manager/index.html", context=context)
 
+
 def book_detail(request, book_id):
     query_set = get_book_with_comment()
-    book = query_set.objects.get(id=book_id)
+    book = query_set.get(id=book_id)
     context = {"book": book}
     return render(request, "sales_manager/book_detail.html", context=context)
 
+
 @login_required()
-def book_like(request, book_id, redirect-url):
+def book_like(request, book_id, redirect_url):
     book = Book.objects.get(id=book_id)
     if request.user in book.likes.all():
         book.likes.remove(request.user)
     else:
         book.likes.add(request.user)
-    if redirect-url == "main-page":
+    if redirect_url == "main-page":
         return redirect("main-page")
-    elif redirect-url == "book-detail":
+    elif redirect_url == "book-detail":
         return redirect("book-detail", book_id=book_id)
+
 
 class LoginView(View):
     def get(self, request):
@@ -48,6 +51,7 @@ class LoginView(View):
 def logout_view(request):
     logout(request)
     return redirect("main-page")
+
 
 @login_required()
 @require_http_methods(["POST"])

@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x14k@%+2uox#bg)7%5^q3%w#i^$^72n8khsd2e9fidthy)a1u3'
+SECRET_KEY = 'django-insecure-e%2x95fia!q&sf(y85c=xwoocn+^ta(n69ip@4sjm7z3g*gn%d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sales_manager',
-    'debug-toolbar'
+    'hotel',
+    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -49,11 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-]
-
-INTERNAL_IPS = [
-    '127.0.0.1',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'books_shop.urls'
@@ -112,9 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'Europe/Minsk'
+DATE_FORMAT = "Y-m-d"
 
-DATE_FORMAT = "Y-m-D"
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
@@ -127,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+INTERNAL_IPS = ['127.0.0.1']
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

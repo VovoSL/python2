@@ -1,10 +1,11 @@
 {% extends 'sales_manager/main.html' %}
 
-{% block content%}
+{% block title %}Main{% endblock %}
+{% block content %}
 <div class="container">
-        <h1>This is  main page</h1>
-        {% for book in books %}
-            {% include 'sales_manager/book_view.html' with book=book with_comment=False redirect-url='main-page' %}
-        {% endfor %}
+    <h1>hello, this is main page</h1><hr>
+    {% for book in books %}
+        {% include "sales_manager/book_view.html" with book=book with_comment=False redirect_url='main-page' %}
+    {% endfor %}
 </div>
 {% endblock %}
